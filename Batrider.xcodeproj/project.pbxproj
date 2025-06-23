@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		F533CA242E09C2430067ABE6 /* QRCodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = F533CA232E09C2430067ABE6 /* QRCodeScanner */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		F5E6AAFD2E09AEC000EED8E1 /* Batrider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Batrider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -15,6 +19,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Application/Info.plist,
+				Utilities/QRCodeScanner,
 			);
 			target = F5E6AAFC2E09AEC000EED8E1 /* Batrider */;
 		};
@@ -36,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F533CA242E09C2430067ABE6 /* QRCodeScanner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +84,7 @@
 			);
 			name = Batrider;
 			packageProductDependencies = (
+				F533CA232E09C2430067ABE6 /* QRCodeScanner */,
 			);
 			productName = Batrider;
 			productReference = F5E6AAFD2E09AEC000EED8E1 /* Batrider.app */;
@@ -107,6 +114,9 @@
 			);
 			mainGroup = F5E6AAF42E09AEC000EED8E1;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				F533CA222E09C2430067ABE6 /* XCLocalSwiftPackageReference "Batrider/Utilities/QRCodeScanner" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = F5E6AAFE2E09AEC000EED8E1 /* Products */;
 			projectDirPath = "";
@@ -147,7 +157,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TK6YFRP8T6;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Batrider/Info.plist;
+				INFOPLIST_FILE = Batrider/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -175,7 +185,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TK6YFRP8T6;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Batrider/Info.plist;
+				INFOPLIST_FILE = Batrider/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -337,6 +347,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		F533CA222E09C2430067ABE6 /* XCLocalSwiftPackageReference "Batrider/Utilities/QRCodeScanner" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Batrider/Utilities/QRCodeScanner;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F533CA232E09C2430067ABE6 /* QRCodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = QRCodeScanner;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F5E6AAF52E09AEC000EED8E1 /* Project object */;
 }
