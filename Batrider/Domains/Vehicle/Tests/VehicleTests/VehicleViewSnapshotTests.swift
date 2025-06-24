@@ -10,7 +10,9 @@ final class VehicleViewSnapshotTests: XCTestCase {
 
     func testVehicleViewLoadedState() {
         let vehicle = Vehicle(name: "TestCar", id: uuid, category: "SUV", price: 10000, currency: "USD")
-        let viewModel = VehicleViewModel(vehicleId: "id123", service: MockVehicleService(vehicle: vehicle))
+        let viewModel = VehicleViewModel(vehicleId: "id123",
+                                         service: MockVehicleService(vehicle: vehicle),
+                                         currencyFormatter: .mockCurrencyFormatter())
         viewModel.vehicle = vehicle
 
         let view = VehicleView(viewModel: viewModel)
@@ -19,7 +21,9 @@ final class VehicleViewSnapshotTests: XCTestCase {
     }
 
     func testVehicleViewLoadingState() {
-        let viewModel = VehicleViewModel(vehicleId: "id123", service: MockVehicleService(vehicle: nil))
+        let viewModel = VehicleViewModel(vehicleId: "id123",
+                                         service: MockVehicleService(vehicle: nil),
+                                         currencyFormatter: .mockCurrencyFormatter())
         viewModel.isLoading = true
 
         let view = VehicleView(viewModel: viewModel)
@@ -28,7 +32,9 @@ final class VehicleViewSnapshotTests: XCTestCase {
     }
 
     func testVehicleViewErrorState() {
-        let viewModel = VehicleViewModel(vehicleId: "id123", service: MockVehicleService(vehicle: nil, error: NetworkError.invalidResponse))
+        let viewModel = VehicleViewModel(vehicleId: "id123",
+                                         service: MockVehicleService(vehicle: nil, error: NetworkError.invalidResponse),
+                                         currencyFormatter: .mockCurrencyFormatter())
         viewModel.errorMessage = "Error!"
 
         let view = VehicleView(viewModel: viewModel)
@@ -44,7 +50,9 @@ final class VehicleViewSnapshotTests: XCTestCase {
             price: 10000,
             currency: "USD"
         )
-        let viewModel = VehicleViewModel(vehicleId: "id123", service: MockVehicleService(vehicle: vehicle))
+        let viewModel = VehicleViewModel(vehicleId: "id123",
+                                         service: MockVehicleService(vehicle: vehicle),
+                                         currencyFormatter: .mockCurrencyFormatter())
         viewModel.vehicle = vehicle
         let view = VehicleView(viewModel: viewModel)
             .frame(width: 390, height: 844)
@@ -53,7 +61,9 @@ final class VehicleViewSnapshotTests: XCTestCase {
 
     func testVehicleViewDifferentCurrency() {
         let vehicle = Vehicle(name: "TestCar", id: uuid, category: "SUV", price: 10000, currency: "SEK")
-        let viewModel = VehicleViewModel(vehicleId: "id123", service: MockVehicleService(vehicle: vehicle))
+        let viewModel = VehicleViewModel(vehicleId: "id123",
+                                         service: MockVehicleService(vehicle: vehicle),
+                                         currencyFormatter: .mockCurrencyFormatter())
         viewModel.vehicle = vehicle
         let view = VehicleView(viewModel: viewModel)
             .frame(width: 390, height: 844)
@@ -62,7 +72,9 @@ final class VehicleViewSnapshotTests: XCTestCase {
 
     func testVehicleViewDarkMode() {
         let vehicle = Vehicle(name: "TestCar", id: uuid, category: "SUV", price: 10000, currency: "USD")
-        let viewModel = VehicleViewModel(vehicleId: "id123", service: MockVehicleService(vehicle: vehicle))
+        let viewModel = VehicleViewModel(vehicleId: "id123",
+                                         service: MockVehicleService(vehicle: vehicle),
+                                         currencyFormatter: .mockCurrencyFormatter())
         viewModel.vehicle = vehicle
         let view = VehicleView(viewModel: viewModel)
             .frame(width: 390, height: 844)
@@ -72,7 +84,9 @@ final class VehicleViewSnapshotTests: XCTestCase {
 
     func testVehicleViewAccessibilityFont() {
         let vehicle = Vehicle(name: "TestCar", id: uuid, category: "SUV", price: 10000, currency: "USD")
-        let viewModel = VehicleViewModel(vehicleId: "id123", service: MockVehicleService(vehicle: vehicle))
+        let viewModel = VehicleViewModel(vehicleId: "id123",
+                                         service: MockVehicleService(vehicle: vehicle),
+                                         currencyFormatter: .mockCurrencyFormatter())
         viewModel.vehicle = vehicle
         let view = VehicleView(viewModel: viewModel)
             .frame(width: 390, height: 844)
