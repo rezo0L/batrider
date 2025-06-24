@@ -9,7 +9,7 @@ final class VehicleViewModelTests {
 
     func setUp() {
         mockService = MockVehicleService()
-        viewModel = VehicleViewModel(vehicleId: "123", service: mockService)
+        viewModel = VehicleViewModel(vehicleId: "123", service: mockService, currencyFormatter: .mockCurrencyFormatter())
     }
 
     @Test
