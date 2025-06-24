@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F533CA242E09C2430067ABE6 /* QRCodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = F533CA232E09C2430067ABE6 /* QRCodeScanner */; };
+		F533CAAC2E0AC6D10067ABE6 /* Vehicle in Frameworks */ = {isa = PBXBuildFile; productRef = F533CAAB2E0AC6D10067ABE6 /* Vehicle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Application/Info.plist,
+				Domains/Vehicle,
 				Utilities/QRCodeScanner,
 			);
 			target = F5E6AAFC2E09AEC000EED8E1 /* Batrider */;
@@ -42,6 +44,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F533CA242E09C2430067ABE6 /* QRCodeScanner in Frameworks */,
+				F533CAAC2E0AC6D10067ABE6 /* Vehicle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +88,7 @@
 			name = Batrider;
 			packageProductDependencies = (
 				F533CA232E09C2430067ABE6 /* QRCodeScanner */,
+				F533CAAB2E0AC6D10067ABE6 /* Vehicle */,
 			);
 			productName = Batrider;
 			productReference = F5E6AAFD2E09AEC000EED8E1 /* Batrider.app */;
@@ -115,7 +119,7 @@
 			mainGroup = F5E6AAF42E09AEC000EED8E1;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				F533CA222E09C2430067ABE6 /* XCLocalSwiftPackageReference "Batrider/Utilities/QRCodeScanner" */,
+				F533CAAA2E0AC6D10067ABE6 /* XCLocalSwiftPackageReference "Batrider/Domains/Vehicle" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = F5E6AAFE2E09AEC000EED8E1 /* Products */;
@@ -349,9 +353,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		F533CA222E09C2430067ABE6 /* XCLocalSwiftPackageReference "Batrider/Utilities/QRCodeScanner" */ = {
+		F533CAAA2E0AC6D10067ABE6 /* XCLocalSwiftPackageReference "Batrider/Domains/Vehicle" */ = {
 			isa = XCLocalSwiftPackageReference;
-			relativePath = Batrider/Utilities/QRCodeScanner;
+			relativePath = Batrider/Domains/Vehicle;
 		};
 /* End XCLocalSwiftPackageReference section */
 
@@ -359,6 +363,10 @@
 		F533CA232E09C2430067ABE6 /* QRCodeScanner */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = QRCodeScanner;
+		};
+		F533CAAB2E0AC6D10067ABE6 /* Vehicle */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Vehicle;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

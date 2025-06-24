@@ -28,11 +28,11 @@ public class URLSessionClient: NetworkClient {
     /// - Returns: A decoded object of type `T`.
     /// - Throws: `NetworkError.invalidURL`, `NetworkError.invalidResponse`, `NetworkError.requestFailed`, or `NetworkError.decodingError`.
     public func request<T: Decodable>(endpoint: Endpoint) async throws -> T {
-        guard var components = URLComponents(url: endpoint.baseURL, resolvingAgainstBaseURL: true) else {
+        let url = endpoint.baseURL.appendingPathComponent(endpoint.path)
+
+        guard var components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
             throw NetworkError.invalidURL
         }
-
-        components.path += endpoint.path
 
         if let parameters = endpoint.parameters {
             components.queryItems = parameters.map { URLQueryItem(name: $0.key, value: $0.value) }
