@@ -1,27 +1,29 @@
-import QRCodeScanner
 import UIKit
+import Vehicle
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let scannerView = QRCodeScannerPreviewView()
-        scannerView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(scannerView)
+        let button = UIButton(type: .system)
+        button.setTitle("Vehicle domain", for: .normal)
+        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+
+        button.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(button)
         NSLayoutConstraint.activate([
-            scannerView.topAnchor.constraint(equalTo: view.topAnchor),
-            scannerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            scannerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scannerView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            button.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
-        do {
-            try scannerView.startScanning()
-            scannerView.onCodeScanned = { code in
-                print("Scanned QR Code: \(code)")
-            }
-        } catch {
-            print("Failed to start scanning: \(error)")
-        }
+    }
+
+    private var vehicleCoordinator: VehicleCoordinator?
+
+    @objc func didTapButton() {
+        guard let navigationController else { return }
+
+        vehicleCoordinator = VehicleCoordinator(navigationController: navigationController)
+        vehicleCoordinator?.start()
     }
 }
