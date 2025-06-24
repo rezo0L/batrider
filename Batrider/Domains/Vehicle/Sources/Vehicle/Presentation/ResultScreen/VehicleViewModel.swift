@@ -8,10 +8,15 @@ class VehicleViewModel: ObservableObject {
 
     private let vehicleId: String
     private let service: VehicleService
+    private let currencyFormatter: NumberFormatter
 
-    init(vehicleId: String, service: VehicleService = NetworkVehicleService()) {
+    init(vehicleId: String,
+         service: VehicleService = NetworkVehicleService(),
+         currencyFormatter: NumberFormatter = .defaultCurrencyFormatter()
+    ) {
         self.vehicleId = vehicleId
         self.service = service
+        self.currencyFormatter = currencyFormatter
     }
 
     func fetchVehicle() async {
@@ -36,11 +41,7 @@ class VehicleViewModel: ObservableObject {
     var formattedPrice: String? {
         guard let vehicle = vehicle else { return nil }
 
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.currencyCode = vehicle.currency
-        formatter.maximumFractionDigits = 2
-        formatter.locale = .current
-        return formatter.string(from: NSNumber(value: vehicle.price)) ?? "\(vehicle.price)"
+        currencyFormatter.currencyCode = vehicle.currency
+        return currencyFormatter.string(from: NSNumber(value: vehicle.price)) ?? "\(vehicle.price)"
     }
 }
