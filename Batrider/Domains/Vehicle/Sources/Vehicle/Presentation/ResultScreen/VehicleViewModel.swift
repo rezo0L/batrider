@@ -6,19 +6,21 @@ class VehicleViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var errorMessage: String?
 
+    private let vehicleId: String
     private let service: VehicleService
 
-    init(service: VehicleService = NetworkVehicleService()) {
+    init(vehicleId: String, service: VehicleService = NetworkVehicleService()) {
+        self.vehicleId = vehicleId
         self.service = service
     }
 
-    func fetchVehicle(identifier: String) async {
+    func fetchVehicle() async {
         isLoading = true
         errorMessage = nil
         vehicle = nil
 
         do {
-            let fetchedVehicle = try await service.fetchVehicle(for: identifier)
+            let fetchedVehicle = try await service.fetchVehicle(for: vehicleId)
             self.vehicle = fetchedVehicle
         } catch {
             self.errorMessage = "Failed to fetch vehicle details: \(error.localizedDescription)"
@@ -38,6 +40,7 @@ class VehicleViewModel: ObservableObject {
         formatter.numberStyle = .currency
         formatter.currencyCode = vehicle.currency
         formatter.maximumFractionDigits = 2
+        formatter.locale = .current
         return formatter.string(from: NSNumber(value: vehicle.price)) ?? "\(vehicle.price)"
     }
 }

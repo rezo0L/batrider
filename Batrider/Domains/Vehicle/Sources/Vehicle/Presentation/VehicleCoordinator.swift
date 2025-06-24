@@ -2,6 +2,7 @@ import QRCodeScanner
 import SwiftUI
 import UIKit
 
+@MainActor
 public class VehicleCoordinator: NSObject {
     public let navigationController: UINavigationController
 
@@ -21,7 +22,8 @@ public class VehicleCoordinator: NSObject {
     }
 
     private func showResultScreen(code: String) {
-        let vehicleView = VehicleView(vehicleId: code)
+        let viewModel = VehicleViewModel(vehicleId: code)
+        let vehicleView = VehicleView(viewModel: viewModel)
         let hostingController = UIHostingController(rootView: vehicleView)
         hostingController.view.backgroundColor = .clear
         hostingController.modalPresentationStyle = .overCurrentContext
@@ -30,7 +32,7 @@ public class VehicleCoordinator: NSObject {
     }
 }
 
-extension VehicleCoordinator: ScanViewControllerDelegate {
+extension VehicleCoordinator: @preconcurrency ScanViewControllerDelegate {
     public func scanViewController(_ viewController: ScanViewController, didScan code: String) {
         viewController.dismiss(animated: true)
         showResultScreen(code: code)

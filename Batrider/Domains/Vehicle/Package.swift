@@ -17,6 +17,7 @@ let package = Package(
     dependencies: [
         .package(path: "../Utilities/QRCodeScanner"),
         .package(path: "../Utilities/NetworkClient"),
+        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.18.4"),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -27,7 +28,10 @@ let package = Package(
         ),
         .testTarget(
             name: "VehicleTests",
-            dependencies: ["Vehicle"]
+            dependencies: [
+                "Vehicle",
+                .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
+            ]
         ),
     ]
 )

@@ -2,12 +2,10 @@ import SwiftUI
 
 struct VehicleView: View {
     @StateObject private var viewModel: VehicleViewModel
-    private let vehicleId: String
     @Environment(\.presentationMode) var presentationMode
 
-    init(vehicleId: String, service: VehicleService = NetworkVehicleService()) {
-        self.vehicleId = vehicleId
-        _viewModel = StateObject(wrappedValue: VehicleViewModel(service: service))
+    init(viewModel: VehicleViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
     }
 
     var body: some View {
@@ -34,7 +32,7 @@ struct VehicleView: View {
                             .multilineTextAlignment(.center)
                         Button("Retry") {
                             Task {
-                                await viewModel.fetchVehicle(identifier: vehicleId)
+                                await viewModel.fetchVehicle()
                             }
                         }
                         .buttonStyle(.borderedProminent)
@@ -57,7 +55,7 @@ struct VehicleView: View {
         }
         .task {
             if viewModel.vehicle == nil {
-                await viewModel.fetchVehicle(identifier: vehicleId)
+                await viewModel.fetchVehicle()
             }
         }
     }
