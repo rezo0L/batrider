@@ -8,4 +8,6 @@ extension String {
     static let vehicleIDPlaceholder = String(localized: "N/A", comment: "Placeholder for missing vehicle ID")
     static let retryButton = String(localized: "Retry", comment: "Retry button title")
     static let fetchVehicleError = String(localized: "Failed to fetch vehicle details: %@", comment: "Error message for failed vehicle fetch")
+    static let scanningFailedTitle = String(localized: "Scanning Failed", comment: "Title for scanning failed alert")
+    static let okButton = String(localized: "OK", comment: "OK button title for alerts")
 }

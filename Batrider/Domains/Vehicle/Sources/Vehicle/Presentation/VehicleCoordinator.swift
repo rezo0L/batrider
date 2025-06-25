@@ -38,9 +38,12 @@ extension VehicleCoordinator: @preconcurrency ScanViewControllerDelegate {
         showResultScreen(code: code)
     }
 
-    public func scanViewController(_ viewController: ScanViewController, didFailWith error: QRCodeScannerError) {
-        // Handle the error
-        print("Scanning failed with error: \(error)")
+    public func scanViewController(_ viewController: ScanViewController, didFailWith error: Error) {
+        let alert = UIAlertController(title: .scanningFailedTitle, message: error.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: .okButton, style: .default, handler: { _ in
+            viewController.dismiss(animated: true)
+        }))
+        viewController.present(alert, animated: true)
     }
 }
 

@@ -41,6 +41,7 @@ final class NetworkVehicleServiceTests: XCTestCase {
             _ = try await service.fetchVehicle(for: "id123")
             XCTFail("Expected error to be thrown")
         } catch {
+            XCTAssertTrue(error is NetworkError, "Expected NetworkError but got \(type(of: error))")
         }
     }
 }
