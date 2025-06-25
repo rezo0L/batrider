@@ -10,7 +10,7 @@ class MockVehicleService: VehicleService {
         self.error = error
     }
 
-    func fetchVehicle() async throws -> Vehicle {
+    func fetchVehicle(for identifier: String) async throws -> Vehicle {
         if let error {
             throw error
         }
