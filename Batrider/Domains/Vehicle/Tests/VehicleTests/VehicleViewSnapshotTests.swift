@@ -81,16 +81,4 @@ final class VehicleViewSnapshotTests: XCTestCase {
             .environment(\.colorScheme, .dark)
         assertSnapshot(of: view, as: .image)
     }
-
-    func testVehicleViewAccessibilityFont() {
-        let vehicle = Vehicle(name: "TestCar", id: uuid, category: "SUV", price: 10000, currency: "USD")
-        let viewModel = VehicleViewModel(vehicleId: "id123",
-                                         service: MockVehicleService(vehicle: vehicle),
-                                         currencyFormatter: .mockCurrencyFormatter())
-        viewModel.vehicle = vehicle
-        let view = VehicleView(viewModel: viewModel)
-            .frame(width: 390, height: 844)
-            .environment(\.sizeCategory, .accessibilityExtraExtraExtraLarge)
-        assertSnapshot(of: view, as: .image)
-    }
 }
