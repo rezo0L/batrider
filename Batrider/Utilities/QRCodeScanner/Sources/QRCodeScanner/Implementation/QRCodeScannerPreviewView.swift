@@ -40,7 +40,7 @@ public class QRCodeScannerPreviewView: UIView, QRCodeScanner {
         label.textColor = .white
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.text = "Scan the QR code on the handlebar of the vehicle."
+        label.text = .scanInstruction
         return label
     }()
 
@@ -62,7 +62,7 @@ public class QRCodeScannerPreviewView: UIView, QRCodeScanner {
         config.imagePlacement = .top
         config.imagePadding = 12
 
-        var title = AttributedString("Flash off")
+        var title = AttributedString(.flashOff)
         title.font = .systemFont(ofSize: 12, weight: .medium)
         config.attributedTitle = title
 
@@ -146,10 +146,10 @@ public class QRCodeScannerPreviewView: UIView, QRCodeScanner {
 
             if isTorchOn {
                 newConfig?.image = UIImage(systemName: "flashlight.on.circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 24, weight: .regular))
-                newTitle = AttributedString("Flash on")
+                newTitle = AttributedString(.flashOn)
             } else {
                 newConfig?.image = UIImage(systemName: "flashlight.off.circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 24, weight: .regular))
-                newTitle = AttributedString("Flash off")
+                newTitle = AttributedString(.flashOff)
             }
 
             newTitle.font = .systemFont(ofSize: 12, weight: .medium)
