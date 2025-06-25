@@ -7,7 +7,6 @@ public protocol ScanViewControllerDelegate: AnyObject {
 }
 
 public class ScanViewController: UIViewController {
-
     public weak var delegate: ScanViewControllerDelegate?
 
     public init() {
@@ -37,7 +36,7 @@ public class ScanViewController: UIViewController {
             scannerView.topAnchor.constraint(equalTo: view.topAnchor),
             scannerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             scannerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scannerView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            scannerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
 
         Task { @MainActor in

@@ -46,4 +46,3 @@ extension VehicleCoordinator: @preconcurrency ScanViewControllerDelegate {
         viewController.present(alert, animated: true)
     }
 }
-

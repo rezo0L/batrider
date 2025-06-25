@@ -2,7 +2,6 @@ import UIKit
 import Vehicle
 
 class ViewController: UIViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -14,7 +13,7 @@ class ViewController: UIViewController {
         view.addSubview(button)
         NSLayoutConstraint.activate([
             button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            button.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            button.centerYAnchor.constraint(equalTo: view.centerYAnchor),
         ])
     }
 

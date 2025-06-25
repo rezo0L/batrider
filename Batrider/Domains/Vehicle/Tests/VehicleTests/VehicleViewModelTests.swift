@@ -1,5 +1,5 @@
-import Testing
 import Foundation
+import Testing
 @testable import Vehicle
 
 @MainActor
@@ -13,7 +13,7 @@ final class VehicleViewModelTests {
     }
 
     @Test
-    func testInitialState() {
+    func initialState() {
         setUp()
         #expect(viewModel.vehicle == nil)
         #expect(viewModel.isLoading == false)
@@ -21,7 +21,7 @@ final class VehicleViewModelTests {
     }
 
     @Test
-    func testFetchVehicleSuccess() async {
+    func fetchVehicleSuccess() async {
         setUp()
         let expectedVehicle = Vehicle(name: "Test Vehicle", id: UUID(), category: "Test", price: 99.99, currency: "SEK")
         mockService.vehicle = expectedVehicle
@@ -36,7 +36,7 @@ final class VehicleViewModelTests {
     }
 
     @Test
-    func testFetchVehicleFailure() async {
+    func fetchVehicleFailure() async {
         setUp()
         let expectedError = NSError(domain: "TestError", code: 123, userInfo: [NSLocalizedDescriptionKey: "Something went wrong"])
         mockService.error = expectedError
@@ -48,7 +48,7 @@ final class VehicleViewModelTests {
     }
 
     @Test
-    func testComputedPropertiesWithNilVehicle() {
+    func computedPropertiesWithNilVehicle() {
         setUp()
         viewModel.vehicle = nil
         #expect(viewModel.name == nil)

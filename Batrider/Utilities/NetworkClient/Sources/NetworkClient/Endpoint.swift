@@ -22,7 +22,6 @@ public enum HTTPMethod: String {
 /// Types conforming to this protocol define the necessary components of an HTTP request,
 /// such as the URL, path, HTTP method, headers, and request body.
 public protocol Endpoint {
-
     /// The base URL of the endpoint (e.g., `https://api.example.com`).
     var baseURL: URL { get }
 

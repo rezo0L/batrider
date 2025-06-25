@@ -1,17 +1,17 @@
-import XCTest
 import NetworkClient
 @testable import Vehicle
+import XCTest
 
 class MockNetworkClient: NetworkClient {
     var result: Result<Vehicle, Error>?
     var lastEndpoint: Endpoint?
 
-    func request<T>(endpoint: Endpoint) async throws -> T where T : Decodable {
+    func request<T>(endpoint: Endpoint) async throws -> T where T: Decodable {
         lastEndpoint = endpoint
         switch result {
-        case .success(let vehicle as T):
+        case let .success(vehicle as T):
             return vehicle
-        case .failure(let error):
+        case let .failure(error):
             throw error
         default:
             fatalError("MockNetworkClient result not set or type mismatch")

@@ -12,8 +12,8 @@ class VehicleViewModel: ObservableObject {
 
     init(vehicleId: String,
          service: VehicleService = NetworkVehicleService(),
-         currencyFormatter: NumberFormatter = .defaultCurrencyFormatter()
-    ) {
+         currencyFormatter: NumberFormatter = .defaultCurrencyFormatter())
+    {
         self.vehicleId = vehicleId
         self.service = service
         self.currencyFormatter = currencyFormatter
@@ -26,12 +26,12 @@ class VehicleViewModel: ObservableObject {
 
         do {
             let fetchedVehicle = try await service.fetchVehicle(for: vehicleId)
-            self.vehicle = fetchedVehicle
+            vehicle = fetchedVehicle
         } catch {
-            self.errorMessage = String(format: .fetchVehicleError, error.localizedDescription)
+            errorMessage = String(format: .fetchVehicleError, error.localizedDescription)
         }
 
-        self.isLoading = false
+        isLoading = false
     }
 
     var name: String? { vehicle?.name }
