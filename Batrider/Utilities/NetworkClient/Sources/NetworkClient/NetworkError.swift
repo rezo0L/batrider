@@ -1,3 +1,5 @@
+import Foundation
+
 /// A custom error type that encapsulates common networking failures.
 ///
 /// Use `NetworkError` to handle and distinguish between various error conditions
@@ -23,4 +25,19 @@ public enum NetworkError: Error {
     ///
     /// - Parameter error: The original error from `URLSession` or related networking operations (e.g., timeouts, no internet).
     case requestFailed(Error)
+}
+
+extension NetworkError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .invalidURL:
+            return .networkInvalidURLError
+        case .invalidResponse:
+            return .networkInvalidResponseError
+        case .decodingError:
+            return .networkDecodingError
+        case .requestFailed:
+            return .networkRequestFailedError
+        }
+    }
 }
