@@ -23,8 +23,6 @@ public class ScanViewController: UIViewController {
     private func setupUI() {
         let scannerView = QRCodeScannerPreviewView()
         scannerView.translatesAutoresizingMaskIntoConstraints = false
-        scannerView.backgroundColor = .black
-
         scannerView.onCloseButtonTapped = { [weak self] in
             self?.dismiss(animated: true)
         }
@@ -52,15 +50,6 @@ public class ScanViewController: UIViewController {
             } catch {
                 print("Failed to start scanning: \(error)")
             }
-        }
-    }
-
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-            guard let self else { return }
-            self.delegate?.scanViewController(self, didScan: "W9MB")
         }
     }
 }
