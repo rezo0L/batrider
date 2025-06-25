@@ -3,7 +3,7 @@ import UIKit
 
 public protocol ScanViewControllerDelegate: AnyObject {
     func scanViewController(_ controller: ScanViewController, didScan code: String)
-    func scanViewController(_ controller: ScanViewController, didFailWith error: QRCodeScannerError)
+    func scanViewController(_ controller: ScanViewController, didFailWith error: Error)
 }
 
 public class ScanViewController: UIViewController {
@@ -45,10 +45,10 @@ public class ScanViewController: UIViewController {
                 try await scannerView.requestCameraAccess()
                 try scannerView.startScanning()
                 scannerView.onCodeScanned = { code in
-                    print("Scanned QR Code: \(code)")
+                    self.delegate?.scanViewController(self, didScan: code)
                 }
             } catch {
-                print("Failed to start scanning: \(error)")
+                delegate?.scanViewController(self, didFailWith: error)
             }
         }
     }

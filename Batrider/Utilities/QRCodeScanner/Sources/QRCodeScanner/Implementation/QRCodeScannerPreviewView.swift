@@ -11,6 +11,7 @@ public class QRCodeScannerPreviewView: UIView, QRCodeScanner {
 
     public func startScanning() throws {
         try scanner.startScanning()
+        backgroundColor = .clear
     }
 
     public var onCodeScanned: ((String) -> Void)? {
@@ -98,6 +99,8 @@ public class QRCodeScannerPreviewView: UIView, QRCodeScanner {
     }
 
     private func setupUI() {
+        backgroundColor = .init(DesignSystem.Color.background)
+
         addSubview(guideFrameView)
         addSubview(qrCodeIconView)
         addSubview(instructionLabel)
@@ -153,7 +156,23 @@ public class QRCodeScannerPreviewView: UIView, QRCodeScanner {
             torchButton.configuration = newConfig
 
         } catch {
-            // unhandled
+            if let viewController = self.findViewController() {
+                let alert = UIAlertController(title: .torchErrorTitle, message: error.localizedDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: .okButton, style: .default))
+                viewController.present(alert, animated: true)
+            }
         }
+    }
+
+    // Helper to find the nearest view controller
+    private func findViewController() -> UIViewController? {
+        var responder: UIResponder? = self
+        while let r = responder {
+            if let vc = r as? UIViewController {
+                return vc
+            }
+            responder = r.next
+        }
+        return nil
     }
 }
