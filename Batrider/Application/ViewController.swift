@@ -7,7 +7,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         let button = UIButton(type: .system)
-        button.setTitle("Vehicle domain", for: .normal)
+        button.setTitle(.vehicleDomainButton, for: .normal)
         button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
 
         button.translatesAutoresizingMaskIntoConstraints = false

@@ -28,7 +28,7 @@ class VehicleViewModel: ObservableObject {
             let fetchedVehicle = try await service.fetchVehicle(for: vehicleId)
             self.vehicle = fetchedVehicle
         } catch {
-            self.errorMessage = "Failed to fetch vehicle details: \(error.localizedDescription)"
+            self.errorMessage = String(format: .fetchVehicleError, error.localizedDescription)
         }
 
         self.isLoading = false

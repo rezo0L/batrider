@@ -30,7 +30,7 @@ struct VehicleView: View {
                             .foregroundColor(.red)
                         Text(errorMessage)
                             .multilineTextAlignment(.center)
-                        Button("Retry") {
+                        Button(String.retryButton) {
                             Task {
                                 await viewModel.fetchVehicle()
                             }
@@ -65,11 +65,11 @@ struct VehicleView: View {
         VStack(spacing: 0) {
             // Header Section
             VStack(spacing: 4) {
-                Text(viewModel.name ?? "Vehicle Name")
+                Text(viewModel.name ?? .vehicleNamePlaceholder)
                     .font(.system(size: 28, weight: .bold, design: .rounded))
                     .foregroundColor(.primary)
 
-                Text(viewModel.category ?? "Category")
+                Text(viewModel.category ?? .categoryPlaceholder)
                     .font(.system(.body, design: .rounded))
                     .fontWeight(.medium)
                     .foregroundColor(.secondary)
@@ -77,7 +77,7 @@ struct VehicleView: View {
             .padding(.vertical, 20)
 
             // Price Section
-            Text(viewModel.formattedPrice ?? "$0.00")
+            Text(viewModel.formattedPrice ?? .pricePlaceholder)
                 .font(.system(size: 40, weight: .heavy, design: .rounded))
                 .foregroundColor(.accentColor)
                 .padding(.vertical, 20)
@@ -86,7 +86,7 @@ struct VehicleView: View {
 
             // Details Section
             VStack(spacing: 16) {
-                detailRow(title: "Vehicle ID", value: viewModel.id ?? "N/A")
+                detailRow(title: .vehicleIDTitle, value: viewModel.id ?? .vehicleIDPlaceholder)
             }
             .padding(20)
         }
