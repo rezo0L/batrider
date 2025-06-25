@@ -5,7 +5,6 @@ import Foundation
 /// Use `NetworkError` to handle and distinguish between various error conditions
 /// that can occur during a network request lifecycle.
 public enum NetworkError: Error {
-
     /// Indicates that a URL could not be constructed from the provided components.
     ///
     /// This typically occurs if the `baseURL` or `path` is malformed.

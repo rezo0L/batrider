@@ -8,4 +8,4 @@ extension String {
     static let okButton = String(localized: "OK", comment: "OK button title for alerts")
     static let cameraNotAuthorizedError = String(localized: "Camera access is not authorized. Please enable camera permissions in Settings.", comment: "Error message when camera permission is denied for QR code scanner")
     static let cameraUnavailableError = String(localized: "Camera is unavailable on this device.", comment: "Error message when camera is not available for QR code scanner")
-} 
+}

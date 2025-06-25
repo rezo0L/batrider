@@ -4,7 +4,6 @@ import UIKit
 /// A view that provides QR code scanning functionality using AVFoundation.
 /// This view can be used to integrate QR code scanning capabilities into any UIKit-based application.
 public class QRCodeScannerPreviewView: UIView, QRCodeScanner {
-
     public func requestCameraAccess() async throws {
         try await scanner.requestCameraAccess()
     }
@@ -82,7 +81,7 @@ public class QRCodeScannerPreviewView: UIView, QRCodeScanner {
         return view
     }()
 
-    public override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         setupPreviewLayer()
         setupUI()
@@ -108,27 +107,27 @@ public class QRCodeScannerPreviewView: UIView, QRCodeScanner {
         addSubview(torchButton)
 
         NSLayoutConstraint.activate([
-            guideFrameView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            guideFrameView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            guideFrameView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            guideFrameView.centerYAnchor.constraint(equalTo: centerYAnchor),
             guideFrameView.widthAnchor.constraint(equalToConstant: 250),
             guideFrameView.heightAnchor.constraint(equalToConstant: 250),
 
-            qrCodeIconView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: DesignSystem.Layout.doubleVerticalSpacing),
-            qrCodeIconView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            qrCodeIconView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: DesignSystem.Layout.doubleVerticalSpacing),
+            qrCodeIconView.centerXAnchor.constraint(equalTo: centerXAnchor),
 
             instructionLabel.topAnchor.constraint(equalTo: qrCodeIconView.bottomAnchor, constant: DesignSystem.Layout.defaultPadding),
-            instructionLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: DesignSystem.Layout.largePadding),
-            instructionLabel.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -DesignSystem.Layout.largePadding),
+            instructionLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: DesignSystem.Layout.largePadding),
+            instructionLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -DesignSystem.Layout.largePadding),
 
-            closeButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: DesignSystem.Layout.defaultPadding),
-            closeButton.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -DesignSystem.Layout.defaultPadding),
+            closeButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: DesignSystem.Layout.defaultPadding),
+            closeButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -DesignSystem.Layout.defaultPadding),
 
-            torchButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -DesignSystem.Layout.doubleVerticalSpacing),
-            torchButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            torchButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -DesignSystem.Layout.doubleVerticalSpacing),
+            torchButton.centerXAnchor.constraint(equalTo: centerXAnchor),
         ])
     }
 
-    public override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         scanner.previewLayer.frame = bounds
     }
@@ -156,7 +155,7 @@ public class QRCodeScannerPreviewView: UIView, QRCodeScanner {
             torchButton.configuration = newConfig
 
         } catch {
-            if let viewController = self.findViewController() {
+            if let viewController = findViewController() {
                 let alert = UIAlertController(title: .torchErrorTitle, message: error.localizedDescription, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: .okButton, style: .default))
                 viewController.present(alert, animated: true)

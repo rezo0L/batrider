@@ -15,4 +15,4 @@ public extension DesignSystem.Icon {
     static let torchOff = "flashlight.off.circle.fill"
     /// Torch on icon.
     static let torchOn = "flashlight.on.circle.fill"
-} 
+}

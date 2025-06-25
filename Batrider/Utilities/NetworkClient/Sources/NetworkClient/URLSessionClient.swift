@@ -5,7 +5,6 @@ import Foundation
 /// This client handles request construction, network execution, error mapping,
 /// optional request logging, and JSON decoding.
 public class URLSessionClient: NetworkClient {
-
     /// The URL session used to perform network requests.
     private let session: URLSession
 
@@ -51,15 +50,16 @@ public class URLSessionClient: NetworkClient {
         }
 
         #if DEBUG
-        debugPrint("➡️ Request: \(request.httpMethod ?? "") \(request.url?.absoluteString ?? "")")
-        if let headers = request.allHTTPHeaderFields {
-            debugPrint("Headers: \(headers)")
-        }
+            debugPrint("➡️ Request: \(request.httpMethod ?? "") \(request.url?.absoluteString ?? "")")
+            if let headers = request.allHTTPHeaderFields {
+                debugPrint("Headers: \(headers)")
+            }
 
-        if let body = request.httpBody,
-           let bodyString = String(data: body, encoding: .utf8) {
-            debugPrint("Body: \(bodyString)")
-        }
+            if let body = request.httpBody,
+               let bodyString = String(data: body, encoding: .utf8)
+            {
+                debugPrint("Body: \(bodyString)")
+            }
         #endif
 
         let data: Data
@@ -71,12 +71,13 @@ public class URLSessionClient: NetworkClient {
         }
 
         guard let httpResponse = response as? HTTPURLResponse,
-              (200...299).contains(httpResponse.statusCode) else {
+              (200 ... 299).contains(httpResponse.statusCode)
+        else {
             throw NetworkError.invalidResponse
         }
 
         #if DEBUG
-        debugPrint("⬅️ Response (\(httpResponse.statusCode)): \(String(data: data, encoding: .utf8) ?? "<non-UTF8 data>")")
+            debugPrint("⬅️ Response (\(httpResponse.statusCode)): \(String(data: data, encoding: .utf8) ?? "<non-UTF8 data>")")
         #endif
 
         do {

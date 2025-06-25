@@ -6,13 +6,14 @@ import PackageDescription
 let package = Package(
     name: "Vehicle",
     platforms: [
-        .iOS(.v16)
+        .iOS(.v16),
     ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "Vehicle",
-            targets: ["Vehicle"]),
+            targets: ["Vehicle"]
+        ),
     ],
     dependencies: [
         .package(path: "../Utilities/QRCodeScanner"),

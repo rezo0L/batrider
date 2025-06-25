@@ -1,6 +1,6 @@
-import XCTest
 import NetworkClient
 import SnapshotTesting
+import XCTest
 
 @testable import Vehicle
 

@@ -1,7 +1,6 @@
 /// A protocol that defines a reusable QR code scanner using the device's camera.
 /// Conforming types can start and stop scanning, and handle scanned QR code data.
 public protocol QRCodeScanner: AnyObject {
-
     /// Requests permission to access the device's camera.
     /// - Throws: An error if the camera access is denied or unavailable.
     func requestCameraAccess() async throws

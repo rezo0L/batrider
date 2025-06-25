@@ -1,7 +1,6 @@
 import AVFoundation
 
 class QRCodeScannerController: NSObject {
-
     var onCodeScanned: ((String) -> Void)?
 
     private lazy var captureSession = AVCaptureSession()
@@ -96,9 +95,10 @@ class QRCodeScannerController: NSObject {
 }
 
 extension QRCodeScannerController: AVCaptureMetadataOutputObjectsDelegate {
-    public func metadataOutput(_ output: AVCaptureMetadataOutput,
+    public func metadataOutput(_: AVCaptureMetadataOutput,
                                didOutput metadataObjects: [AVMetadataObject],
-                               from connection: AVCaptureConnection) {
+                               from _: AVCaptureConnection)
+    {
         guard let metadataObject = metadataObjects.first as? AVMetadataMachineReadableCodeObject,
               let stringValue = metadataObject.stringValue else { return }
         onCodeScanned?(stringValue)
