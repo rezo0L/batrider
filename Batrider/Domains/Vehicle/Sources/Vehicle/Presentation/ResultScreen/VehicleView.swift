@@ -1,3 +1,4 @@
+import DesignSystem
 import SwiftUI
 
 struct VehicleView: View {
@@ -10,7 +11,7 @@ struct VehicleView: View {
 
     var body: some View {
         ZStack {
-            Color.black.opacity(0.4)
+            DesignSystem.Color.overlay
                 .ignoresSafeArea()
                 .onTapGesture {
                     presentationMode.wrappedValue.dismiss()
@@ -20,14 +21,14 @@ struct VehicleView: View {
                 if viewModel.isLoading {
                     ProgressView()
                         .progressViewStyle(CircularProgressViewStyle())
-                        .padding(35)
+                        .padding(DesignSystem.Layout.largePadding)
                         .background(.thinMaterial)
-                        .cornerRadius(20)
+                        .cornerRadius(DesignSystem.Layout.cornerRadius)
                 } else if let errorMessage = viewModel.errorMessage {
                     VStack(spacing: 15) {
-                        Image(systemName: "xmark.octagon.fill")
-                            .font(.largeTitle)
-                            .foregroundColor(.red)
+                        Image(systemName: DesignSystem.Icon.close)
+                            .font(.init(DesignSystem.Font.title))
+                            .foregroundColor(DesignSystem.Color.error)
                         Text(errorMessage)
                             .multilineTextAlignment(.center)
                         Button(String.retryButton) {
@@ -38,9 +39,9 @@ struct VehicleView: View {
                         .buttonStyle(.borderedProminent)
                         .tint(.red)
                     }
-                    .padding(30)
-                    .background(Color(.systemBackground))
-                    .cornerRadius(20)
+                    .padding(DesignSystem.Layout.mediumPadding)
+                    .background(DesignSystem.Color.background)
+                    .cornerRadius(DesignSystem.Layout.cornerRadius)
                     .shadow(radius: 10)
                     .padding()
                 } else if viewModel.vehicle != nil {
@@ -66,44 +67,44 @@ struct VehicleView: View {
             // Header Section
             VStack(spacing: 4) {
                 Text(viewModel.name ?? .vehicleNamePlaceholder)
-                    .font(.system(size: 28, weight: .bold, design: .rounded))
-                    .foregroundColor(.primary)
+                    .font(.init(DesignSystem.Font.title))
+                    .foregroundColor(DesignSystem.Color.primaryText)
 
                 Text(viewModel.category ?? .categoryPlaceholder)
-                    .font(.system(.body, design: .rounded))
+                    .font(.init(DesignSystem.Font.body))
                     .fontWeight(.medium)
-                    .foregroundColor(.secondary)
+                    .foregroundColor(DesignSystem.Color.secondaryText)
             }
-            .padding(.vertical, 20)
+            .padding(.vertical, DesignSystem.Layout.verticalSpacing)
 
             // Price Section
             Text(viewModel.formattedPrice ?? .pricePlaceholder)
-                .font(.system(size: 40, weight: .heavy, design: .rounded))
-                .foregroundColor(.accentColor)
-                .padding(.vertical, 20)
+                .font(.init(DesignSystem.Font.price))
+                .foregroundColor(DesignSystem.Color.accent)
+                .padding(.vertical, DesignSystem.Layout.verticalSpacing)
                 .frame(maxWidth: .infinity)
-                .background(.quaternary)
+                .background(DesignSystem.Color.secondarySystemBackground)
 
             // Details Section
             VStack(spacing: 16) {
                 detailRow(title: .vehicleIDTitle, value: viewModel.id ?? .vehicleIDPlaceholder)
             }
-            .padding(20)
+            .padding(DesignSystem.Layout.mediumPadding)
         }
-        .background(Color(.secondarySystemGroupedBackground))
-        .cornerRadius(20)
-        .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
+        .background(DesignSystem.Color.background)
+        .cornerRadius(DesignSystem.Layout.cornerRadius)
+        .shadow(color: DesignSystem.Color.overlay25, radius: 10, x: 0, y: 5)
     }
 
     private func detailRow(title: String, value: String) -> some View {
         HStack {
             Text(title)
-                .font(.headline)
-                .foregroundColor(.secondary)
+                .font(.init(DesignSystem.Font.detailTitle))
+                .foregroundColor(DesignSystem.Color.secondaryText)
             Spacer()
             Text(value)
-                .font(.system(.body, design: .monospaced))
-                .foregroundColor(.primary)
+                .font(.init(DesignSystem.Font.detail))
+                .foregroundColor(DesignSystem.Color.primaryText)
                 .lineLimit(1)
                 .truncationMode(.middle)
         }

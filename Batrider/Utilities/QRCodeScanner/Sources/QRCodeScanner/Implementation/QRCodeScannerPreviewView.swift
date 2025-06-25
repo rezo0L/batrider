@@ -1,3 +1,4 @@
+import DesignSystem
 import UIKit
 
 /// A view that provides QR code scanning functionality using AVFoundation.
@@ -28,16 +29,16 @@ public class QRCodeScannerPreviewView: UIView, QRCodeScanner {
     private lazy var qrCodeIconView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(systemName: "qrcode.viewfinder", withConfiguration: UIImage.SymbolConfiguration(pointSize: 32, weight: .light))
-        imageView.tintColor = .white
+        imageView.image = UIImage(systemName: DesignSystem.Icon.scan, withConfiguration: UIImage.SymbolConfiguration(pointSize: 32, weight: .light))
+        imageView.tintColor = .init(DesignSystem.Color.button)
         return imageView
     }()
 
     private lazy var instructionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 14, weight: .bold)
-        label.textColor = .white
+        label.font = DesignSystem.Font.caption
+        label.textColor = .init(DesignSystem.Color.button)
         label.textAlignment = .center
         label.numberOfLines = 0
         label.text = .scanInstruction
@@ -47,8 +48,8 @@ public class QRCodeScannerPreviewView: UIView, QRCodeScanner {
     private lazy var closeButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "xmark"), for: .normal)
-        button.tintColor = .white
+        button.setImage(UIImage(systemName: DesignSystem.Icon.close), for: .normal)
+        button.tintColor = .init(DesignSystem.Color.button)
         button.addTarget(self, action: #selector(didTapCloseButton), for: .touchUpInside)
         return button
     }()
@@ -58,15 +59,12 @@ public class QRCodeScannerPreviewView: UIView, QRCodeScanner {
         button.translatesAutoresizingMaskIntoConstraints = false
 
         var config = UIButton.Configuration.plain()
-        config.image = UIImage(systemName: "flashlight.off.circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 24, weight: .regular))
-        config.imagePlacement = .top
-        config.imagePadding = 12
-
+        config.image = UIImage(systemName: DesignSystem.Icon.torchOff, withConfiguration: UIImage.SymbolConfiguration(pointSize: 24, weight: .regular))
+        config.imagePadding = DesignSystem.Layout.defaultPadding
         var title = AttributedString(.flashOff)
-        title.font = .systemFont(ofSize: 12, weight: .medium)
+        title.font = DesignSystem.Font.caption
         config.attributedTitle = title
-
-        config.baseForegroundColor = .white
+        config.baseForegroundColor = .init(DesignSystem.Color.button)
         button.configuration = config
 
         button.addTarget(self, action: #selector(didTapTorchButton), for: .touchUpInside)
@@ -77,9 +75,9 @@ public class QRCodeScannerPreviewView: UIView, QRCodeScanner {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .clear
-        view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 2
-        view.layer.cornerRadius = 24
+        view.layer.borderColor = DesignSystem.Color.button.cgColor
+        view.layer.borderWidth = DesignSystem.Layout.borderWidth
+        view.layer.cornerRadius = DesignSystem.Layout.cornerRadius
         return view
     }()
 
@@ -106,25 +104,23 @@ public class QRCodeScannerPreviewView: UIView, QRCodeScanner {
         addSubview(closeButton)
         addSubview(torchButton)
 
-        let guideFrameSide: CGFloat = 250
-
         NSLayoutConstraint.activate([
             guideFrameView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             guideFrameView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            guideFrameView.widthAnchor.constraint(equalToConstant: guideFrameSide),
-            guideFrameView.heightAnchor.constraint(equalToConstant: guideFrameSide),
+            guideFrameView.widthAnchor.constraint(equalToConstant: 250),
+            guideFrameView.heightAnchor.constraint(equalToConstant: 250),
 
-            qrCodeIconView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 40),
+            qrCodeIconView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: DesignSystem.Layout.doubleVerticalSpacing),
             qrCodeIconView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
 
-            instructionLabel.topAnchor.constraint(equalTo: qrCodeIconView.bottomAnchor, constant: 16),
-            instructionLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 40),
-            instructionLabel.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -40),
+            instructionLabel.topAnchor.constraint(equalTo: qrCodeIconView.bottomAnchor, constant: DesignSystem.Layout.defaultPadding),
+            instructionLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: DesignSystem.Layout.largePadding),
+            instructionLabel.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -DesignSystem.Layout.largePadding),
 
-            closeButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20),
-            closeButton.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            closeButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: DesignSystem.Layout.defaultPadding),
+            closeButton.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -DesignSystem.Layout.defaultPadding),
 
-            torchButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -40),
+            torchButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -DesignSystem.Layout.doubleVerticalSpacing),
             torchButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
         ])
     }
@@ -145,14 +141,14 @@ public class QRCodeScannerPreviewView: UIView, QRCodeScanner {
             var newTitle: AttributedString
 
             if isTorchOn {
-                newConfig?.image = UIImage(systemName: "flashlight.on.circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 24, weight: .regular))
+                newConfig?.image = UIImage(systemName: DesignSystem.Icon.torchOn, withConfiguration: UIImage.SymbolConfiguration(pointSize: 24, weight: .regular))
                 newTitle = AttributedString(.flashOn)
             } else {
-                newConfig?.image = UIImage(systemName: "flashlight.off.circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 24, weight: .regular))
+                newConfig?.image = UIImage(systemName: DesignSystem.Icon.torchOff, withConfiguration: UIImage.SymbolConfiguration(pointSize: 24, weight: .regular))
                 newTitle = AttributedString(.flashOff)
             }
 
-            newTitle.font = .systemFont(ofSize: 12, weight: .medium)
+            newTitle.font = DesignSystem.Font.caption
             newConfig?.attributedTitle = newTitle
             torchButton.configuration = newConfig
 

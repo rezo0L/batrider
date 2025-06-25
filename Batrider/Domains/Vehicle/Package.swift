@@ -17,6 +17,7 @@ let package = Package(
     dependencies: [
         .package(path: "../Utilities/QRCodeScanner"),
         .package(path: "../Utilities/NetworkClient"),
+        .package(path: "../Utilities/DesignSystem"),
         .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.18.4"),
     ],
     targets: [
@@ -24,7 +25,7 @@ let package = Package(
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "Vehicle",
-            dependencies: ["QRCodeScanner", "NetworkClient"]
+            dependencies: ["QRCodeScanner", "NetworkClient", "DesignSystem"]
         ),
         .testTarget(
             name: "VehicleTests",
